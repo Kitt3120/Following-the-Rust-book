@@ -1,4 +1,4 @@
-//Bad example:
+//Bad:
 
 fn largest_number_bad(numbers: &[i32]) -> &i32 {
     let mut largest = &numbers[0];
@@ -35,6 +35,8 @@ pub fn bad() {
 //The two functions are identical except for the type of the parameter and the type of the return value.
 
 //====================================================================================================
+
+//Good:
 
 /*
     Setting the PartialOrd trait bound on the generic type T means the largest_element function will only work on types that implement the PartialOrd trait.

@@ -1,3 +1,5 @@
+//Bad:
+
 pub fn bad() {
     let numbers = vec![1, 2, 3, 4, 5];
     let mut largest = &numbers[0];
@@ -21,6 +23,8 @@ pub fn bad() {
 }
 
 //====================================================================================================
+
+//Good:
 
 fn largest_number(numbers: &[i32]) -> &i32 {
     let mut largest = &numbers[0];
