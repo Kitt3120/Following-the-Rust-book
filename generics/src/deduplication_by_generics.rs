@@ -28,12 +28,18 @@ pub fn bad() {
     let chars = vec!['a', 'b', 'c', 'd', 'e'];
     let largest = largest_char_bad(&chars);
     println!("The largest character is {}", largest);
+
+    //Two functions are used for the same purpose, only for a different type.
 }
 
 //The two functions are identical except for the type of the parameter and the type of the return value.
 
 //====================================================================================================
 
+/*
+    Setting the PartialOrd trait bound on the generic type T means the largest_element function will only work on types that implement the PartialOrd trait.
+    Imagine it like a contract: We open up our function to be used with any type (generic), but in return, the type must implement the PartialOrd trait.
+*/
 fn largest_element<T: PartialOrd>(elements: &[T]) -> &T {
     let mut largest = &elements[0];
     for element in elements {
@@ -53,5 +59,5 @@ pub fn good() {
     let largest = largest_element(&chars);
     println!("The largest character is {}", largest);
 
-    //The duplicated code is extracted into a function
+    //The two functions are replaced by a single function that uses generics.
 }
