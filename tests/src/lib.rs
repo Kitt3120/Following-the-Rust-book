@@ -7,38 +7,23 @@
     By doing this, you can cover parts of your program to ensure they're working as intended.
 */
 
-fn main() {
-    let a = 10;
-    let b = 5;
-
-    let a_plus_b = add(a, b);
-    let a_minus_b = subtract(a, b);
-    let a_times_b = multiply(a, b);
-    let a_divided_by_b = divide(a, b);
-
-    println!("a + b = {}", a_plus_b);
-    println!("a - b = {}", a_minus_b);
-    println!("a * b = {}", a_times_b);
-    println!("a / b = {}", a_divided_by_b);
-}
-
-fn add(a: i32, b: i32) -> i32 {
+pub fn add(a: i32, b: i32) -> i32 {
     a + b
 }
 
-fn subtract(a: i32, b: i32) -> i32 {
+pub fn subtract(a: i32, b: i32) -> i32 {
     a - b
 }
 
-fn multiply(a: i32, b: i32) -> i32 {
+pub fn multiply(a: i32, b: i32) -> i32 {
     a * b
 }
 
-fn divide(a: i32, b: i32) -> i32 {
+pub fn divide(a: i32, b: i32) -> i32 {
     a / b
 }
 
-fn matches(a: i32, b: i32) -> bool {
+pub fn matches(a: i32, b: i32) -> bool {
     a == b
 }
 
