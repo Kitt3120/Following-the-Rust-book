@@ -1,16 +1,25 @@
-use std::env;
+use std::{env, path::Path};
+
+use grep::parse_arguments;
 
 fn main() {
     let args = env::args().collect::<Vec<String>>();
+    let args = parse_arguments(&args);
 
-    if args.len() < 3 {
-        println!("Please provide at least two arguments\ngrep <pattern> <filename>",);
+    if args.is_err() {
+        println!("Error while parsing arguments: {}", args.unwrap_err());
         return;
     }
+    let args = args.unwrap();
 
-    let var1 = &args[1];
-    let var2 = &args[2];
+    let content = grep::read_file(&Path::new(&args.path));
+    if content.is_err() {
+        println!("Error while reading file: {}", content.unwrap_err());
+        return;
+    }
+    let content = content.unwrap();
 
-    println!("var1: {}", var1);
-    println!("var2: {}", var2);
+    let content = grep::filter(&content, &args.pattern);
+
+    println!("{}", content.join("\n"));
 }
