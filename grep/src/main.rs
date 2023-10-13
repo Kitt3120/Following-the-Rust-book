@@ -1,25 +1,20 @@
-use std::{env, path::Path};
-
-use grep::parse_arguments;
+use grep::{filter, parse_arguments, read_file};
+use std::{env, path::Path, process::exit};
 
 fn main() {
     let args = env::args().collect::<Vec<String>>();
-    let args = parse_arguments(&args);
 
-    if args.is_err() {
-        println!("Error while parsing arguments: {}", args.unwrap_err());
-        return;
-    }
-    let args = args.unwrap();
+    let args = parse_arguments(&args).unwrap_or_else(|error| {
+        println!("Error while parsing arguments: {error}");
+        exit(1);
+    });
 
-    let content = grep::read_file(&Path::new(&args.path));
-    if content.is_err() {
-        println!("Error while reading file: {}", content.unwrap_err());
-        return;
-    }
-    let content = content.unwrap();
+    let content = read_file(&Path::new(&args.path));
+    let content = content.unwrap_or_else(|error| {
+        println!("Error while reading file: {error}");
+        exit(1);
+    });
 
-    let content = grep::filter(&content, &args.pattern);
-
-    println!("{}", content.join("\n"));
+    let lines = filter(&content, &args.pattern);
+    println!("{}", lines.join("\n"));
 }
