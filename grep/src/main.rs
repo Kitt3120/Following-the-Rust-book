@@ -8,12 +8,12 @@ fn main() {
     let arguments = env::args().collect::<Vec<String>>();
 
     let arguments = parse_arguments(&arguments).unwrap_or_else(|error| {
-        println!("Error while parsing arguments: {error}");
+        eprintln!("Error while parsing arguments: {error}");
         exit(1);
     });
 
     run(arguments).unwrap_or_else(|error| {
-        println!("Error while running: {error}");
+        eprintln!("Error while running: {error}");
         exit(1);
     });
 }
