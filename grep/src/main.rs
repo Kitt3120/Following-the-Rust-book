@@ -7,7 +7,7 @@ use std::{
 fn main() {
     let arguments = env::args().collect::<Vec<String>>();
 
-    let arguments = parse_arguments(&arguments).unwrap_or_else(|error| {
+    let arguments = parse_arguments(arguments).unwrap_or_else(|error| {
         eprintln!("Error while parsing arguments: {error}");
         exit(1);
     });

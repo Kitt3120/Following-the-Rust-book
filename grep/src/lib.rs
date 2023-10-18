@@ -29,18 +29,31 @@ pub fn run(arguments: Arguments) -> Result<(), String> {
     Ok(())
 }
 
-pub fn parse_arguments(args: &[String]) -> Result<Arguments, String> {
-    if args.len() < 3 {
-        return Err("Not enough arguments provided.\nUsage: grep <pattern> <file>".to_string());
-    }
+pub fn parse_arguments(args: Vec<String>) -> Result<Arguments, String> {
+    let mut iterator = args.into_iter();
+
+    let pattern = match iterator.next() {
+        Some(pattern) => pattern,
+        None => {
+            return Err(
+                "No argument was provided for the pattern.\nUsage: grep <pattern> <file>"
+                    .to_string(),
+            )
+        }
+    };
+
+    let path = match iterator.next() {
+        Some(path) => path,
+        None => {
+            return Err(
+                "No argument was provided for the path.\nUsage: grep <pattern> <file>".to_string(),
+            )
+        }
+    };
 
     let case_insensitive = env::var("CASE_INSENSITIVE").is_ok();
 
-    Ok(Arguments::new(
-        args[1].clone(),
-        args[2].clone(),
-        case_insensitive,
-    ))
+    Ok(Arguments::new(pattern, path, case_insensitive))
 }
 
 pub fn read_file(path: &Path) -> Result<String, String> {
