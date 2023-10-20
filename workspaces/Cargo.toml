@@ -1,0 +1,7 @@
+[workspace]
+resolver = "2"
+members = [
+    "some_lib",
+    "some_other_lib",
+    "binary",
+]
