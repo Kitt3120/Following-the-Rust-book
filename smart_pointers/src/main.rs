@@ -24,7 +24,7 @@
      - Ref<T> and RefMut<T>: Smart pointers that enforces the borrowing rules at runtime instead of compile time.
 
     When to use what:
-     - Box<T> for allocating values on the heap. This enables recursive types like a linked list or a tree.
+     - Box<T> for allocating values on the heap. This enables recursive types like a linked list or a tree. Also allows mutable borrows.
      - Rc<T>, a reference counting type that enables multiple ownership. However, those are only immutable references. Single-threaded only.
      - RefCell<T>, a type that enforces the borrowing rules at runtime instead of compile time. Useful for the interior mutability pattern. Single-threaded only.
 */
@@ -32,7 +32,7 @@
 mod box_pointer;
 mod deref_trait;
 mod drop_trait;
-mod ref_cell_pointer;
+mod reference_cell_pointer;
 mod reference_counting_pointer;
 
 fn main() {
@@ -49,5 +49,5 @@ fn main() {
     reference_counting_pointer::run();
 
     println!("===== Ref Cell Pointer =====");
-    ref_cell_pointer::run();
+    reference_cell_pointer::run();
 }

@@ -25,7 +25,7 @@ enum LinkedList {
 
 fn using_box_pointer() {
     let a = LinkedList::Cons(5, Box::new(LinkedList::Cons(10, Box::new(LinkedList::End))));
-    let b = LinkedList::Cons(3, Box::new(a));
+    let _b = LinkedList::Cons(3, Box::new(a));
     //let c = LinkedList::Cons(4, Box::new(a)); // Doesn't work, a is moved
     println!("Doesn't work! :(");
 }
