@@ -27,6 +27,8 @@
 
 mod box_pointer;
 mod deref_trait;
+mod drop_trait;
+mod reference_counting_pointer;
 
 fn main() {
     println!("===== Box Pointer =====");
@@ -34,4 +36,10 @@ fn main() {
 
     println!("===== Deref Trait =====");
     deref_trait::run();
+
+    println!("===== Drop Trait =====");
+    drop_trait::run();
+
+    println!("===== Reference Counting Pointer =====");
+    reference_counting_pointer::run();
 }
