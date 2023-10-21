@@ -17,17 +17,22 @@
     The Drop trait allows you to customize the code that’s run when an instance of the smart pointer goes out of scope.
 
     Most common smart pointers:
+     - Vec<T>: A growable array type.
+     - String: A UTF-8 encoded, growable string.
+     - Box<T>: A pointer type for heap allocation.
+     - Rc<T>: A reference counting type that enables multiple ownership.
+     - Ref<T> and RefMut<T>: Smart pointers that enforces the borrowing rules at runtime instead of compile time.
 
-    - String: A UTF-8 encoded, growable string.
-    - Vec<T>: A growable array type.
-    - Box<T>: A pointer type for heap allocation.
-    - Rc<T>: A reference counting type that enables multiple ownership.
-    - Ref<T> and RefMut<T>: Smart pointers that enforces the borrowing rules at runtime instead of compile time.
+    When to use what:
+     - Box<T> for allocating values on the heap. This enables recursive types like a linked list or a tree.
+     - Rc<T>, a reference counting type that enables multiple ownership. However, those are only immutable references. Single-threaded only.
+     - RefCell<T>, a type that enforces the borrowing rules at runtime instead of compile time. Useful for the interior mutability pattern. Single-threaded only.
 */
 
 mod box_pointer;
 mod deref_trait;
 mod drop_trait;
+mod ref_cell_pointer;
 mod reference_counting_pointer;
 
 fn main() {
@@ -42,4 +47,7 @@ fn main() {
 
     println!("===== Reference Counting Pointer =====");
     reference_counting_pointer::run();
+
+    println!("===== Ref Cell Pointer =====");
+    ref_cell_pointer::run();
 }

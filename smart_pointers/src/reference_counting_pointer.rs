@@ -59,3 +59,10 @@ fn using_reference_counting_pointer() {
         Instead, you can focus on the .clone() calls that do deep copies.
     */
 }
+
+/*
+    Note that Rc<T> is only for use in single-threaded scenarios.
+    Handling concurrency is a topic explained in project "concurrency" of this repo.
+    Also, Rc<T> is only for use in immutable scenarios.
+    If you want multiple mutable references, see ref_cell_pointer.rs.
+*/
