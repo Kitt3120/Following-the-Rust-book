@@ -24,6 +24,7 @@
 mod channels;
 mod join_handles;
 mod mutexes_with_arc;
+mod send_and_sync_traits;
 mod thread_move_closure;
 
 fn main() {
@@ -38,4 +39,7 @@ fn main() {
 
     println!("===== Mutexes =====");
     mutexes_with_arc::run();
+
+    println!("===== Sync Trait =====");
+    send_and_sync_traits::run();
 }
