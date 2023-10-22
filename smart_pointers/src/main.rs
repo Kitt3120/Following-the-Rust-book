@@ -34,6 +34,7 @@ mod deref_trait;
 mod drop_trait;
 mod reference_cell_pointer;
 mod reference_counting_pointer;
+mod weak_reference;
 
 fn main() {
     println!("===== Box Pointer =====");
@@ -50,4 +51,7 @@ fn main() {
 
     println!("===== Ref Cell Pointer =====");
     reference_cell_pointer::run();
+
+    println!("===== Weak Reference =====");
+    weak_reference::run();
 }
