@@ -34,6 +34,7 @@ mod deref_trait;
 mod drop_trait;
 mod reference_cell_pointer;
 mod reference_counting_pointer;
+mod reference_cycle_memory_leak;
 mod weak_reference;
 
 fn main() {
@@ -54,4 +55,7 @@ fn main() {
 
     println!("===== Weak Reference =====");
     weak_reference::run();
+
+    println!("===== Reference Cycle Memory Leak =====");
+    reference_cycle_memory_leak::run();
 }
