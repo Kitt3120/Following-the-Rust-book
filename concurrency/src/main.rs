@@ -23,6 +23,7 @@
 
 mod channels;
 mod join_handles;
+mod mutexes_with_arc;
 mod thread_move_closure;
 
 fn main() {
@@ -34,4 +35,7 @@ fn main() {
 
     println!("===== Channels =====");
     channels::run();
+
+    println!("===== Mutexes =====");
+    mutexes_with_arc::run();
 }
