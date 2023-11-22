@@ -16,17 +16,26 @@
     so you can write your code to work with either references or smart pointers.
     The Drop trait allows you to customize the code that’s run when an instance of the smart pointer goes out of scope.
 
-    Most common smart pointers:
+    Smart Pointers (not thread-safe):
      - Vec<T>: A growable array type.
-     - String: A UTF-8 encoded, growable string.
+     - String: A UTF-8 encoded, growable string type.
      - Box<T>: A pointer type for heap allocation.
      - Rc<T>: A reference counting type that enables multiple ownership.
-     - Ref<T> and RefMut<T>: Smart pointers that enforces the borrowing rules at runtime instead of compile time.
+     - Ref<T>, RefMut<T>, RefCell<T>: Smart pointers that enforces the borrowing rules at runtime instead of compile time.
+        > When you borrow from a RefCell<T>, you'll get a Ref<T> or a RefMut<T>.
+
+    Smart Pointers (thread-safe):
+     - Arc<T>: A reference counting type that enables multiple ownership. The atomic counterpart to Rc<T>. Often used with Mutex<T> to allow access from multiple threads and interior mutability.
+     - Mutex<T>: A smart pointer that allows access to an inner value only one thread at a time.
 
     When to use what:
-     - Box<T> for allocating values on the heap. This enables recursive types like a linked list or a tree. Also allows mutable borrows.
-     - Rc<T>, a reference counting type that enables multiple ownership. However, those are only immutable references. Single-threaded only.
+     - Box<T> for allocating values on the heap. This enables recursive types like a linked list or a tree. Also allows interior mutability.
+     - Rc<T> when ownership of a value needs to be shared between multiple owners. Allows for only immutable references. Single-threaded only.
      - RefCell<T>, a type that enforces the borrowing rules at runtime instead of compile time. Useful for the interior mutability pattern. Single-threaded only.
+        > Combine RefCell<T> with Rc<T> to get multiple owners with interior mutability. Single-threaded only.
+     - Arc<T> counterpart to Rc<T>, but atomic and thus thread-safe. Useful for multiple owners from multiple threads.
+     - Mutex<T> for mutably accessing data from multiple threads. Useful to synchronize access to data between multiple threads. Also provides interior mutability.
+        > Combine Mutex<T> with Arc<T> to get multiple owners with interior mutability from multiple threads.
 */
 
 mod box_pointer;
