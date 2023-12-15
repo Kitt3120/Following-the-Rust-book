@@ -37,11 +37,15 @@
     Then, we'll also do a more natural approach.
 */
 
+mod state_natural;
 mod state_traditional;
 
 fn main() {
     println!("=== Traditional Approach ===");
     state_traditional::run();
 
-    println!("=== Rust Approach ===");
+    println!();
+
+    println!("=== Natural Approach ===");
+    state_natural::run();
 }
